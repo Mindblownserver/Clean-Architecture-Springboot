@@ -11,7 +11,7 @@ import lombok.Setter;
 public class User {
     private String cin; // unique id
     private String username;
-    private String pswdHash;
-    private String state;
+    private String passwd;
+    private UserState state;
     private Role role;
 }

@@ -1,5 +1,7 @@
 package com.kharrat.cleanarchitecturetest.core.usecase;
 
+import com.kharrat.cleanarchitecturetest.core.usecase.modal.AccessRefreshTokens;
+
 public interface SignInUseCase {
-    String signin(String cin, String passwd);
+    AccessRefreshTokens signin(String cin, String passwd);
 }
