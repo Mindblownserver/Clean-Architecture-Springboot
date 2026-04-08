@@ -1,17 +1,18 @@
-package com.kharrat.cleanarchitecturetest.infrastructure.impl;
+package com.ums.infrastructure.impl;
 
-import com.kharrat.cleanarchitecturetest.infrastructure.mapper.UserEntityMapper;
-import com.kharrat.cleanarchitecturetest.infrastructure.persistence.entities.UserEntity;
-import com.kharrat.cleanarchitecturetest.infrastructure.persistence.repository.RoleRepository;
-import com.kharrat.cleanarchitecturetest.infrastructure.persistence.repository.UserRepository;
-import com.kharrat.cleanarchitecturetest.core.domain.User;
-import com.kharrat.cleanarchitecturetest.core.domain.UserState;
-import com.kharrat.cleanarchitecturetest.core.usecase.ports.PasswordEncoderPort;
-import com.kharrat.cleanarchitecturetest.core.usecase.ports.UserPersistenceAdapter;
-import com.kharrat.cleanarchitecturetest.core.usecase.user.exceptions.UserNotFoundException;
+import com.ums.domain.User;
+import com.ums.domain.UserState;
+import com.ums.infrastructure.mapper.UserEntityMapper;
+import com.ums.infrastructure.persistence.entities.UserEntity;
+import com.ums.infrastructure.persistence.repository.RoleRepository;
+import com.ums.infrastructure.persistence.repository.UserRepository;
+import com.ums.usecases.ports.PasswordEncoderPort;
+import com.ums.usecases.ports.UserPersistenceAdapter;
+import com.ums.usecases.user.exceptions.UserNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -23,8 +24,8 @@ public class SimpleUserPersistenceAdapter implements UserPersistenceAdapter {
     private final RoleRepository roleRepository;
 
     @Override
-    public boolean exists(User user) {
-        return userRepository.existsById(user.getCin());
+    public boolean existsById(String userId) {
+        return userRepository.existsById(userId);
     }
 
     @Override
@@ -36,9 +37,9 @@ public class SimpleUserPersistenceAdapter implements UserPersistenceAdapter {
 
     @Override
     @Transactional
-    public void archive(User u) {
-        UserEntity entity = userRepository.findById(u.getCin())
-                .orElseThrow(()->new UserNotFoundException("User cin="+u.getCin()+" not found"));
+    public void archive(String userId) {
+        UserEntity entity = userRepository.findById(userId)
+                .orElseThrow(()->new UserNotFoundException("User cin="+userId+" not found"));
         entity.setState(UserState.ARCHIVED);
         userRepository.save(entity);
     }
@@ -55,11 +56,11 @@ public class SimpleUserPersistenceAdapter implements UserPersistenceAdapter {
     *   then Map dto to domain (might have null values. Then under here, just use IF not null THEN use SETTER)
     *
     *   Now another problem, how can I proceed with Role??
-    *   In dtoDomain mapper, I'll use RoleRepository to map it. If null, don't update
+    *   In dtoDomain mapper, I'll turn it into Role object. If null, don't update
     * */
-    public User update(User u) {
-        UserEntity entity = userRepository.findById(u.getCin())
-                .orElseThrow(()->new UserNotFoundException("User cin="+u.getCin()+" not found"));
+    public User update(String cin, User u) {
+        UserEntity entity = userRepository.findById(cin)
+                .orElseThrow(()->new UserNotFoundException("User cin="+cin+" not found"));
 
         if(Objects.nonNull(u.getUsername())) entity.setUsername(u.getUsername());
         if(Objects.nonNull(u.getPasswd()) && !u.getPasswd().trim().isEmpty()) entity.setPasswdHash(passwordEncoderPort.encodePassword(u.getPasswd()));
@@ -75,6 +76,13 @@ public class SimpleUserPersistenceAdapter implements UserPersistenceAdapter {
     public Optional<User> findByCin(String cin) {
         return mapper.toOptionalDomain(
                 userRepository.findById(cin)
+        );
+    }
+
+    @Override
+    public List<User> findAll() {
+        return mapper.toDomainList(
+                userRepository.findAll()
         );
     }
 }
