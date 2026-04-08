@@ -1,6 +1,6 @@
-package com.kharrat.cleanarchitecturetest.infrastructure.persistence.entities;
+package com.ums.infrastructure.persistence.entities;
 
-import com.kharrat.cleanarchitecturetest.core.domain.UserState;
+import com.ums.domain.UserState;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "users")
 public class UserEntity {
     @Id
     @Column(unique = true)

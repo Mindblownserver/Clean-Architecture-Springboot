@@ -1,4 +1,4 @@
-package com.kharrat.cleanarchitecturetest.infrastructure.persistence.entities;
+package com.ums.infrastructure.persistence.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -9,6 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name="roles")
 public class RoleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
