@@ -1,16 +1,21 @@
-package com.kharrat.cleanarchitecturetest.infrastructure.mapper;
+package com.ums.infrastructure.mapper;
 
-import com.kharrat.cleanarchitecturetest.infrastructure.persistence.entities.UserEntity;
-import com.kharrat.cleanarchitecturetest.core.domain.User;
+import com.ums.domain.User;
+import com.ums.infrastructure.persistence.entities.UserEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
 
+import java.util.List;
 import java.util.Optional;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserEntityMapper {
     @Mapping(target = "passwd", source = "entity.passwdHash")
     User toDomain(UserEntity entity);
+
+    //TODO: Test if this crap works!
+    List<User> toDomainList(List<UserEntity> entityList);
 
     @Mapping(target = "passwdHash", source = "u.passwd")
     UserEntity toEntity(User u);
