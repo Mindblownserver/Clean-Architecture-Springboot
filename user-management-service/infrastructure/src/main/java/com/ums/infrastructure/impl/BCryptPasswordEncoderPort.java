@@ -1,7 +1,7 @@
 package com.ums.infrastructure.impl;
 
 
-import com.ums.usecases.ports.PasswordEncoderPort;
+import com.ums.application.ports.PasswordEncoderPort;
 import lombok.RequiredArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
 

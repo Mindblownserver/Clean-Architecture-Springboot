@@ -1,0 +1,20 @@
+==== rectifs ====
+couche application (usecases)
+feature-based.
+No ports nor adapters
+Remove unnecessary mapper layer
+
+change application to presentation
+add swagger
+
+==== add stuff ====
+User and roles: ManyToMany
+Can add user separately
+fetch roles
+AddRoleByExcel (addEnseignantFromExcel: adds user then adds in user table) (**)
+
+register + signin + change passwd
+register is done by ajout des comptes (**) : upload excel and choose role, or individually without excel (json)
+
+CRUD on Roles and Users: pagination (optional)
+What's the structure of the excel file to be uploaded?

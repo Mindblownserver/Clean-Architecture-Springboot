@@ -4,10 +4,12 @@ import com.ums.domain.Role;
 import com.ums.infrastructure.mapper.RoleEntityMapper;
 import com.ums.infrastructure.persistence.entities.RoleEntity;
 import com.ums.infrastructure.persistence.repository.RoleRepository;
-import com.ums.usecases.ports.RolePersistenceAdapter;
-import com.ums.usecases.role.exceptions.RoleNotFoundException;
+import com.ums.application.ports.RolePersistenceAdapter;
+import com.ums.application.role.exceptions.RoleNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 public class SimpleRolePersistenceAdapter implements RolePersistenceAdapter {
@@ -34,6 +36,13 @@ public class SimpleRolePersistenceAdapter implements RolePersistenceAdapter {
         entity.setName(r.getName());
         return mapper.toDomain(
             roleRepository.save(entity)
+        );
+    }
+
+    @Override
+    public List<Role> findAll() {
+        return mapper.toDomainList(
+                roleRepository.findAll()
         );
     }
 }

@@ -6,9 +6,9 @@ import com.ums.infrastructure.mapper.UserEntityMapper;
 import com.ums.infrastructure.persistence.entities.UserEntity;
 import com.ums.infrastructure.persistence.repository.RoleRepository;
 import com.ums.infrastructure.persistence.repository.UserRepository;
-import com.ums.usecases.ports.PasswordEncoderPort;
-import com.ums.usecases.ports.UserPersistenceAdapter;
-import com.ums.usecases.user.exceptions.UserNotFoundException;
+import com.ums.application.ports.PasswordEncoderPort;
+import com.ums.application.ports.UserPersistenceAdapter;
+import com.ums.application.user.exceptions.UserNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
