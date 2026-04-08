@@ -1,0 +1,12 @@
+name: Update User By CIN
+method: PUT
+url: '{{baseUrl}}/users/:cin'
+body:
+  type: json
+  content: |-
+    {
+      "state": "ACTIVE",
+      "username":"Mohamed Yassine KHARRAT"
+    }
+params:
+  cin: '11111099'

@@ -1,0 +1,5 @@
+name: Archive User By CIN
+method: PATCH
+url: '{{baseUrl}}/users/:cin'
+params:
+  cin: '11111099'

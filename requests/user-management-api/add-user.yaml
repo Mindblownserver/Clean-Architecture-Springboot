@@ -1,0 +1,12 @@
+name: Add user
+method: POST
+url: '{{baseUrl}}/users'
+body:
+  type: json
+  content: |-
+    {
+      "cin": "11111099",
+      "username":"Mohamed Yassine Kharrat",
+      "passwd": "123456789",
+      "roleId": 1
+    }
