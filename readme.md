@@ -3,6 +3,22 @@
 This repository contains a **Clean Architecture**-based user management project organized as a Maven multi-module service.
 I've designed `user-management-service` with microservice architecture in mind.
 In other words, it's a small service that has one duty: manage users/ roles/ authenticate them
+
+## Table of Contents
+  - [Project Structure](#project-structure)
+  - [Clean Architecture Overview](#clean-architecture-overview)
+  - [Module Documentation](#module-documentation)
+    - [1) `domain`](#1-domain)
+    - [2) `application`](#2-application)
+    - [3) `infrastructure`](#3-infrastructure)
+    - [4) `presentation`](#4-presentation)
+  - [Parent Module (`user-management-service`)](#parent-module-user-management-service)
+  - [Build and Run](#build-and-run)
+    - [Build all modules](#build-all-modules)
+    - [Run tests](#run-tests)
+    - [Run the application (common patterns)](#run-the-application-common-patterns)
+  - [API Request Collection](#api-request-collection)
+  - [Suggested Development Flow](#suggested-development-flow)
 ## Project Structure
 
 ```text
