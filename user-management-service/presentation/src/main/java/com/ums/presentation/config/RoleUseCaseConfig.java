@@ -1,6 +1,7 @@
 package com.ums.presentation.config;
 
 import com.ums.infrastructure.impl.SimpleRolePersistenceAdapter;
+import com.ums.infrastructure.impl.role.GetRolesUseCaseImpl;
 import com.ums.infrastructure.mapper.RoleEntityMapper;
 import com.ums.infrastructure.persistence.repository.RoleRepository;
 import com.ums.application.ports.RolePersistenceAdapter;
@@ -8,7 +9,6 @@ import com.ums.application.role.AddRoleUseCase;
 import com.ums.application.role.GetRolesUseCase;
 import com.ums.application.role.UpdateRoleUseCase;
 import com.ums.application.role.impl.AddRoleUseCaseImpl;
-import com.ums.application.role.impl.GetRolesUseCaseImpl;
 import com.ums.application.role.impl.UpdateRoleUseCaseImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
