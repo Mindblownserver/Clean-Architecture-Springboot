@@ -151,7 +151,7 @@ mvn clean install
 ```
 
 ### Run tests
-
+Currently, it has no tests, but here's the command in case you needed it
 ```bash
 cd /home/yassine/Documents/Projects/Clean-Architecture-test/user-management-service
 mvn test
